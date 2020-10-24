@@ -43,24 +43,11 @@
                                             ItemsSource="{Binding Source={StaticResource ItemsCvsSource}}" 
                                             SelectedValueBinding="{Binding DocNumber}"
                                             DisplayMemberPath="DocNumber" />
-                    <DataGridTextColumn Header="Примечание" Binding="{Binding Path=DocNumber, UpdateSourceTrigger=PropertyChanged}"/>
+                    <DataGridTextColumn Header="Примечание" Binding="{Binding Path=DocNumber, UpdateSourceTrigger=PropertyChanged}" Width="auto"/>
                 </DataGrid.Columns>
                 
             </DataGrid>
 
-
-            <ComboBox Grid.Column="0" ItemsSource="{Binding Sheets}"
-                      SelectedItem="{Binding SelectedSheet}">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Margin="5">
-                            <TextBlock FontSize="18" Text="{Binding Path=SheetNumber}" />
-                            <TextBlock Text="{Binding Path=Company}" />
-                            <TextBlock Text="{Binding Path=Price}" />
-                        </StackPanel>
-                    </DataTemplate> 
-                </ComboBox.ItemTemplate>
-            </ComboBox>
         </StackPanel>
         <StackPanel></StackPanel>
     </DockPanel>

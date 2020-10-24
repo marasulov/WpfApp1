@@ -1,0 +1,72 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1.Styles.VS2012"
+        xmlns:vm="clr-namespace:WpfApp1.ViewModel"
+        xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
+        mc:Ignorable="d"
+        Style="{StaticResource VS2012WindowStyle}"  SizeToContent="WidthAndHeight" >
+    <Window.Resources>
+        <CollectionViewSource x:Key="ItemsCvsSource" Source="{Binding Sheets}" />
+    </Window.Resources>
+    <Window.DataContext>
+        <vm:SheetViewModel/>
+    </Window.DataContext>
+    <DockPanel>
+        <StatusBar
+            DockPanel.Dock="Bottom"
+            Height="24" >
+            <TextBlock Margin="3,0,0,0" >Ready </TextBlock>
+            <StatusBarItem HorizontalAlignment="Right">
+                <ResizeGrip Opacity="0.75" />
+            </StatusBarItem>
+        </StatusBar>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+        </Grid>
+
+        <StackPanel HorizontalAlignment="Center">
+            <TextBlock Margin="1" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center" Height="20" >
+                Ведомость основных чертежей рабочего комплекта
+            </TextBlock>
+            <DataGrid Grid.Row="1" Margin="1" ItemsSource="{Binding Sheets}" SelectedItem="{Binding SelectedSheet}" x:Name="dgTodoList" AutoGenerateColumns="False" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Позиция" Binding="{Binding Path= SheetNumber}"/>
+
+
+
+                    <DataGridComboBoxColumn Header="Наименование" 
+                                            ItemsSource="{Binding Source={StaticResource ItemsCvsSource}}" 
+                                            SelectedValueBinding="{Binding DocNumber}"
+                                            DisplayMemberPath="DocNumber" />
+                    <DataGridTextColumn Header="Примечание" Binding="{Binding Path=DocNumber, UpdateSourceTrigger=PropertyChanged}"/>
+                </DataGrid.Columns>
+                
+            </DataGrid>
+
+
+            <ComboBox Grid.Column="0" ItemsSource="{Binding Sheets}"
+                      SelectedItem="{Binding SelectedSheet}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="5">
+                            <TextBlock FontSize="18" Text="{Binding Path=SheetNumber}" />
+                            <TextBlock Text="{Binding Path=Company}" />
+                            <TextBlock Text="{Binding Path=Price}" />
+                        </StackPanel>
+                    </DataTemplate> 
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel></StackPanel>
+    </DockPanel>
+
+
+
+
+
+</Window>

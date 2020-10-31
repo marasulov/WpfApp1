@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
@@ -25,7 +26,6 @@ namespace WpfApp1.Models
             {
                 sheetNumber = value;
                 OnPropertyChanged("SheetNumber");
-                
             }
         }
 
@@ -41,8 +41,9 @@ namespace WpfApp1.Models
             set
             {
                 docNumber = value;
-                OnPropertyChanged("SheetNumber");
+                OnPropertyChanged("DocNumber");
 
+                
             }
         }
         /// <summary>
@@ -71,41 +72,6 @@ namespace WpfApp1.Models
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
 
-        public string ImportantInfo
-        {
-            get
-            {
-                return ConcatenateData(repositoryData);
-            }
-        }
 
-        //public SpesSheetModel()
-        //{
-        //    repositoryData = GetData();
-        //}
-
-        /// <summary>
-        /// Simulates data retrieval from a repository
-        /// </summary>
-        /// <returns>List of strings</returns>
-        private List<string> GetData()
-        {
-            repositoryData = new List<string>()
-            {
-                "Hellossssss",
-                "world"
-            };
-            return repositoryData;
-        }
-
-        /// <summary>
-        /// Concatenate the information from the list into a fully formed sentence.
-        /// </summary>
-        /// <returns>A string</returns>
-        private string ConcatenateData(List<string> dataList)
-        {
-            string importantInfo = dataList.ElementAt(0) + ", " + dataList.ElementAt(1) + "!";
-            return importantInfo;
-        }
     }
 }

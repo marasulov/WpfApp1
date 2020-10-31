@@ -65,6 +65,7 @@
     <Compile Include="Styles\VS2012\VS2012WindowStyle.cs" />
     <Compile Include="ViewModel\PhoneViewModel.cs" />
     <Compile Include="ViewModel\SheetViewModel.cs" />
+    <Compile Include="Windows\Palette_Set.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

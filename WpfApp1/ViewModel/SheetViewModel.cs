@@ -6,11 +6,14 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
 using WpfApp1.Models;
+using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace WpfApp1.ViewModel
 {
-    class SheetViewModel : INotifyPropertyChanged
+    class SheetViewModel 
     {
         private SpesSheetModel selectedSheetModel;
 
@@ -27,9 +30,7 @@ namespace WpfApp1.ViewModel
                 return addCommand ??
                        (addCommand = new RelayCommand(obj =>
                        {
-                           SpesSheetModel sheet = new SpesSheetModel();
-                           Sheets.Insert(0, sheet);
-                           SelectedSheet = sheet;
+                           MessageBox.Show("Test");
                        }));
             }
         }
@@ -40,7 +41,7 @@ namespace WpfApp1.ViewModel
             set
             {
                 selectedSheetModel = value;
-                OnPropertyChanged("SelectedSheet");
+                //OnPropertyChanged("SelectedSheet");
             }
         }
 
@@ -48,12 +49,15 @@ namespace WpfApp1.ViewModel
         {
             Sheets = new ObservableCollection<SpesSheetModel>
             {
-                new SpesSheetModel {SheetNumber = "7", DocNumber = "acaaa"},
-                new SpesSheetModel {SheetNumber = "1", DocNumber = "acaasdsadaa"},
-                new SpesSheetModel {SheetNumber = "3", DocNumber = "acaasadsada"},
-                new SpesSheetModel {SheetNumber = "2", DocNumber = "acaasadsada"}
+                new SpesSheetModel {SheetNumber = "7", DocNumber = "77",DocTitleEng = "title1"},
+                new SpesSheetModel {SheetNumber = "1", DocNumber = "12", DocTitleEng = "title2"},
+                new SpesSheetModel {SheetNumber = "3", DocNumber = "34", DocTitleEng = "title3"},
+                new SpesSheetModel {SheetNumber = "2", DocNumber = "25", DocTitleEng = "title4"},
+                new SpesSheetModel {SheetNumber = "3", DocNumber = "36", DocTitleEng = "title4"}
             };
         }
+        //TODO command to button
+
 
         /// <summary>
         /// Raises OnPropertychangedEvent when property changes
@@ -66,5 +70,6 @@ namespace WpfApp1.ViewModel
 
 
     }
+
 
 }
